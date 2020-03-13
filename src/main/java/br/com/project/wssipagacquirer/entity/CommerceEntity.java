@@ -1,116 +1,87 @@
 package br.com.project.wssipagacquirer.entity;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "COMMERCE")
 public class CommerceEntity {
 	
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String nameCommerce;
-	private String email;
 	private Integer cnpj;
-	private Integer fone;
-	private Integer zipCode;
-	private String  street;
-	private String  district;
-	private String  city;
-	private String  state;
-	private Integer number;
-	private String  complement;
 	
-		
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@ElementCollection
+	@CollectionTable(name = "commerce_fones", joinColumns = @JoinColumn(name="cod_commerce"))
+	@Column(name = "fones", length = 20)
+	private List<String> fones;
+	
+	@ElementCollection
+	@CollectionTable(name = "commerce_email", joinColumns = @JoinColumn(name = "cod_commerce"))
+	private List<String> email;
+	
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "id_adress")
+	private AdressEntity adress;
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	@Column(name = "NAME_COMMERCE", nullable = false)
 	public String getNameCommerce() {
 		return nameCommerce;
 	}
 	public void setNameCommerce(String nameCommerce) {
 		this.nameCommerce = nameCommerce;
 	}
-	
-	@Column(name = "EMAIL", nullable = false)
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	@Column(name = "CNPJ", nullable = false)
 	public Integer getCnpj() {
 		return cnpj;
 	}
 	public void setCnpj(Integer cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-	@Column(name = "FONE", nullable = false)
-	public Integer getFone() {
-		return fone;
+	public List<String> getFones() {
+		return fones;
 	}
-	public void setFone(Integer fone) {
-		this.fone = fone;
-	}
-	public Integer getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
+	public void setFones(List<String> fones) {
+		this.fones = fones;
 	}
 	
-	public Integer getNumber() {
-		return number;
+	public List<String> getEmail() {
+		return email;
 	}
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setEmail(List<String> email) {
+		this.email = email;
 	}
-	public String getComplement() {
-		return complement;
+	public AdressEntity getAdress() {
+		return adress;
 	}
-	public void setComplement(String complement) {
-		this.complement = complement;
+	public void setAdress(AdressEntity adress) {
+		this.adress = adress;
 	}
+
+	
+
+	
+	
+	
+	
+		
+
 	
 	
 		

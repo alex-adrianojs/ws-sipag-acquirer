@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.project.wssipagacquirer.dto.Commerce;
+import br.com.project.wssipagacquirer.dto.CommerceDto;
 import br.com.project.wssipagacquirer.entity.CommerceEntity;
 import br.com.project.wssipagacquirer.mapper.CommerceMapper;
 import br.com.project.wssipagacquirer.repository.CommerceRepository;
@@ -34,7 +34,7 @@ public class CommerceController {
 	}
 
 	@GetMapping("commerce/{id}")
-	public ResponseEntity<Commerce> getCommerceById(@PathVariable(value = "id") Integer commerceId) {
+	public ResponseEntity<CommerceDto> getCommerceById(@PathVariable(value = "id") Integer commerceId) {
 
 		return commerceRp.findById(commerceId)
 				.map(record -> ResponseEntity.ok().body(CommerceMapper.entityToDto(record)))
@@ -42,17 +42,18 @@ public class CommerceController {
 	}
 
 	@PostMapping("create-commerce")
-	public ResponseEntity<Commerce> createCommerce(@RequestBody Commerce commerce) {
-
+	public ResponseEntity<CommerceDto> createCommerce(@RequestBody CommerceDto commerce) {
+		
 		CommerceEntity entity = CommerceMapper.dtoToEntity(commerce);
-
+		
+	
 		commerceRp.save(entity);
 
 		return ResponseEntity.ok().body(commerce);
 	}
 
 	@PutMapping(value = "update-commerce")
-	public ResponseEntity<Commerce> updateCommerce(@RequestBody Commerce commerce) {
+	public ResponseEntity<CommerceDto> updateCommerce(@RequestBody CommerceDto commerce) {
 
 		return commerceRp.findById(commerce.getId()).map(record -> {
 			commerceRp.save(commerceSv.setCommerceUpdade(record, commerce));
@@ -64,7 +65,7 @@ public class CommerceController {
 	}
 
 	@DeleteMapping(value = "delete-commerce/{id}")
-	public ResponseEntity<Commerce> deleteCommerce(@PathVariable(value = "id") Integer commerceId) {
+	public ResponseEntity<CommerceDto> deleteCommerce(@PathVariable(value = "id") Integer commerceId) {
 
 		return commerceRp.findById(commerceId).map(record -> {
 			commerceRp.deleteById(record.getId());

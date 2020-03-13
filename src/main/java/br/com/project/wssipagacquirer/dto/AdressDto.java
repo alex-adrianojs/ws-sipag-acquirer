@@ -1,12 +1,8 @@
 package br.com.project.wssipagacquirer.dto;
 
-public class Commerce {
+public class AdressDto {
 	
 	private Integer id;
-	private String 	nameCommerce;
-	private String 	email;
-	private Integer cnpj;
-	private Integer fone;
 	private Integer zipCode;
 	private String  street;
 	private String  district;
@@ -20,30 +16,6 @@ public class Commerce {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getNameCommerce() {
-		return nameCommerce;
-	}
-	public void setNameCommerce(String nameCommerce) {
-		this.nameCommerce = nameCommerce;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Integer getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(Integer cnpj) {
-		this.cnpj = cnpj;
-	}
-	public Integer getFone() {
-		return fone;
-	}
-	public void setFone(Integer fone) {
-		this.fone = fone;
 	}
 	public Integer getZipCode() {
 		return zipCode;
@@ -75,7 +47,6 @@ public class Commerce {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
 	public Integer getNumber() {
 		return number;
 	}
@@ -88,7 +59,6 @@ public class Commerce {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
-
 	
 	
 
